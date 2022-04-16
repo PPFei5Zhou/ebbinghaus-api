@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Ebbinghaus api
+ * Ebbinghaus api.
  *
  * @author Easy
  */
