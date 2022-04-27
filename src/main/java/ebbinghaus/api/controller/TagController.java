@@ -53,6 +53,11 @@ public class TagController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<TagResponse> getTagById(@PathVariable String id) {
+        return ResponseEntity.ok(TagResponse.create(service.findById(id)));
+    }
+
     @GetMapping("userTagList")
     public ResponseEntity<List<TagResponse>> userTagList() {
         var list = service.userTagList("ef12fC6F-7DbF-A372-fDE7-CfaC9Cc66BeF");

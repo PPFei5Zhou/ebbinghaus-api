@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +25,13 @@ class TagRepositoryTest {
     @Resource
     private TagRepository repository;
 
+    private final Timestamp now = new Timestamp(System.currentTimeMillis());
+
     private final Tag parent = new Tag(
             "F6636F1d-941F-94C8-7b03-247e45c31C94",
             "花计量海",
             "B4bBAE2E-735c-0fAe-6eF7-7cA735A9bB52",
+            now,
             null
     );
 
@@ -35,7 +39,8 @@ class TagRepositoryTest {
             "8743e75c-C8bb-eFb5-bde9-DDfc51DdFBBA",
             "外活单节",
             "B4bBAE2E-735c-0fAe-6eF7-7cA735A9bB52",
-            new Tag("F6636F1d-941F-94C8-7b03-247e45c31C94", null, null, null)
+            now,
+            new Tag("F6636F1d-941F-94C8-7b03-247e45c31C94", null, null, null, null)
     );
 
     @Test
@@ -69,5 +74,6 @@ class TagRepositoryTest {
         assertThat(expected.getId(), equalTo(actual.getId()));
         assertThat(expected.getTagName(), equalTo(actual.getTagName()));
         assertThat(expected.getUserId(), equalTo(actual.getUserId()));
+        assertThat(expected.getCreateAt(), equalTo(actual.getCreateAt()));
     }
 }

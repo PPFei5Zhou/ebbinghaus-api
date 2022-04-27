@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -23,6 +24,7 @@ public class Tag {
     private String tagName;
     @Column(updatable = false)
     private String userId;
+    private Timestamp createAt;
 
     @OneToOne
     private Tag parent;
@@ -31,10 +33,11 @@ public class Tag {
     @JoinColumn(name = "parent_id")
     private List<Tag> children;
 
-    public Tag(String id, String tagName, String userId, Tag parent) {
+    public Tag(String id, String tagName, String userId, Timestamp createAt, Tag parent) {
         this.id = id;
         this.tagName = tagName;
         this.userId = userId;
+        this.createAt = createAt;
         this.parent = parent;
     }
 
@@ -52,6 +55,7 @@ public class Tag {
                 .add("id='" + id + "'")
                 .add("tagName='" + tagName + "'")
                 .add("userId='" + userId + "'")
+                .add("createAt='" + createAt + "'")
                 .toString();
     }
 
@@ -77,6 +81,14 @@ public class Tag {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public Timestamp getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Timestamp createAt) {
+        this.createAt = createAt;
     }
 
     public Tag getParent() {
