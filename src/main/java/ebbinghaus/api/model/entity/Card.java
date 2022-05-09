@@ -52,6 +52,13 @@ public class Card {
         }
     }
 
+    public Card(String id, String cardName, Timestamp createAt, List<CardContent> content) {
+        this.id = id;
+        this.cardName = cardName;
+        this.createAt = createAt;
+        this.content = content;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", Card.class.getSimpleName() + "[", "]")

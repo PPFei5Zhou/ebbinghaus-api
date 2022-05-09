@@ -45,10 +45,6 @@ public class Tag {
     protected Tag() {
     }
 
-    private Tag(String id) {
-        this.id = id;
-    }
-
     @Override
     public String toString() {
         return new StringJoiner(", ", Tag.class.getSimpleName() + "[", "]")
