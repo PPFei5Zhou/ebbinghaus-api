@@ -28,6 +28,14 @@ public class CardBody {
         return new Card(id, getCardName(), null, list);
     }
 
+    public Card ofSearch() {
+        List<CardContent> list = new ArrayList<>();
+        if (content != null) {
+            content.forEach((c) -> list.add(c.convert()));
+        }
+        return new Card(getId(), getCardName(), getCreateAt(), list);
+    }
+
     public String getId() {
         return id;
     }

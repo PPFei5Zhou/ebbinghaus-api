@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Card controller.
@@ -56,5 +57,10 @@ public class CardController {
     public ResponseEntity<CardResponse> findById(@PathVariable String id) {
         Card card = service.findById(id);
         return ResponseEntity.ok(CardResponse.build(card));
+    }
+
+    @PostMapping("findAllBy")
+    public ResponseEntity<List<CardResponse>> findAllBy(@RequestBody CardBody body) {
+        return ResponseEntity.ok(CardResponse.build(service.findAllBy(body.ofSearch())));
     }
 }

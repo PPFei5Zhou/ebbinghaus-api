@@ -4,11 +4,15 @@ import ebbinghaus.api.model.entity.Card;
 import ebbinghaus.api.repository.CardRepository;
 import ebbinghaus.api.service.CardService;
 import ebbinghaus.api.utils.JpaUtil;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -53,5 +57,17 @@ public class CardServiceImpl implements CardService {
     @Override
     public Card findById(String id) {
         return repository.findById(id).orElseThrow(() -> new NullPointerException("Card dose not exit."));
+    }
+
+    @Override
+    public List<Card> findAllBy(Card model) {
+        return repository.findAll((Specification<Card>) (root, query, criteriaBuilder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            if (StringUtils.hasText(model.getCardName())) {
+                predicates.add(criteriaBuilder.equal(root.get("cardName"), model.getCardName()));
+            }
+            Predicate[] predicates1 = new Predicate[predicates.size()];
+            return query.where(predicates.toArray(predicates1)).getGroupRestriction();
+        });
     }
 }

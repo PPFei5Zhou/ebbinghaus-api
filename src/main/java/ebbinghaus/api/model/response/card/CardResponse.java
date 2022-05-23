@@ -1,6 +1,7 @@
 package ebbinghaus.api.model.response.card;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import ebbinghaus.api.model.entity.Card;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -21,12 +22,20 @@ public class CardResponse implements Serializable {
         this.content = content;
     }
 
-    public static CardResponse build(ebbinghaus.api.model.entity.Card card) {
+    public static CardResponse build(Card card) {
         List<Content> content = new ArrayList<>();
         if (card.getContent() != null && !card.getContent().isEmpty()) {
             card.getContent().forEach((c) -> content.add(new Content(c.getContent())));
         }
         return new CardResponse(card.getId(), card.getCardName(), card.getCreateAt(), content);
+    }
+
+    public static List<CardResponse> build(List<Card> list) {
+        List<CardResponse> result = new ArrayList<>();
+        for (var item : list) {
+            result.add(build(item));
+        }
+        return result;
     }
 
     public String getId() {

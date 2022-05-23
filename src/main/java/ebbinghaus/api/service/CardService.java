@@ -2,6 +2,8 @@ package ebbinghaus.api.service;
 
 import ebbinghaus.api.model.entity.Card;
 
+import java.util.List;
+
 /**
  * Card service.
  *
@@ -45,4 +47,12 @@ public interface CardService {
      * @return entity of card
      */
     Card findById(String id);
+
+    /**
+     * Find all by dynamic condition.
+     *
+     * @param model condition
+     * @return list of card
+     */
+    List<Card> findAllBy(Card model);
 }
