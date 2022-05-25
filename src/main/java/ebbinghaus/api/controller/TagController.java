@@ -54,7 +54,7 @@ public class TagController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<TagResponse> getTagById(@PathVariable String id) {
+    public ResponseEntity<TagResponse> findById(@PathVariable String id) {
         return ResponseEntity.ok(TagResponse.create(service.findById(id)));
     }
 

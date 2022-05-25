@@ -20,7 +20,7 @@ class CardRepositoryTest {
     private CardRepository repository;
 
     private final String id = UUID.randomUUID().toString();
-    private final Card card = Card.ofCreate(id, "test card name", "test card content");
+    private final Card card = Card.ofCreate(id, "test card name", "tag id", "test card content");
     private final Card update = Card.ofUpdate(id, "update card name", "update card content");
 
     @Test

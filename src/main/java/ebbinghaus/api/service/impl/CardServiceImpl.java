@@ -66,6 +66,9 @@ public class CardServiceImpl implements CardService {
             if (StringUtils.hasText(model.getCardName())) {
                 predicates.add(criteriaBuilder.equal(root.get("cardName"), model.getCardName()));
             }
+            if (StringUtils.hasText(model.getTagId())) {
+                predicates.add(criteriaBuilder.equal(root.get("tagId"), model.getTagId()));
+            }
             Predicate[] predicates1 = new Predicate[predicates.size()];
             return query.where(predicates.toArray(predicates1)).getGroupRestriction();
         });
