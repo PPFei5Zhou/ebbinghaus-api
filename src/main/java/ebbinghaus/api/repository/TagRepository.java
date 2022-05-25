@@ -21,10 +21,10 @@ public interface TagRepository extends JpaRepository<Tag, String>, JpaSpecificat
     List<Tag> findAllByParentId(String parentId);
 
     /**
-     * find tag list by user id.
+     * find tag list by user id and parent id is null.
      *
      * @param userId user id
      * @return list of tag
      */
-    List<Tag> findAllByUserId(String userId);
+    List<Tag> findAllByUserIdAndParentIdIsNull(String userId);
 }

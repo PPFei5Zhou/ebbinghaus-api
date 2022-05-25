@@ -78,6 +78,6 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public List<Tag> userTagList(String userId) {
-        return repository.findAllByUserId(userId);
+        return repository.findAllByUserIdAndParentIdIsNull(userId);
     }
 }
